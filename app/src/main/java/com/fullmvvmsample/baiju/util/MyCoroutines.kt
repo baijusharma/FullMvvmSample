@@ -12,4 +12,10 @@ object MyCoroutines {
         work()
     }
 
+
+    // To run on background thread (IO) no updating any UI
+    fun io(work: suspend (() -> Unit)) = CoroutineScope(Dispatchers.IO).launch {
+        work()
+    }
+
 }

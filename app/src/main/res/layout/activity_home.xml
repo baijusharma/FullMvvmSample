@@ -5,6 +5,8 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:background="@color/colorRed"
     tools:context=".ui.home.HomeActivity">
 
     <LinearLayout
@@ -14,6 +16,7 @@
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
+            android:layout_marginTop="22dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?colorPrimary">
@@ -36,6 +39,6 @@
         app:menu="@menu/nav_menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="start" />
+        android:layout_gravity="start"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

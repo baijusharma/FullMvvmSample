@@ -1,6 +1,7 @@
 package com.fullmvvmsample.baiju.ui.home
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
@@ -34,5 +35,11 @@ class HomeActivity : AppCompatActivity() {
         return NavigationUI.navigateUp(
             Navigation.findNavController(this, R.id.fragment), drawer_layout
         )
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menuInflater.inflate(R.menu.nav_menu, menu)
+        return true
     }
 }
