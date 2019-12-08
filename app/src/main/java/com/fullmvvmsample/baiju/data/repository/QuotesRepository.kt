@@ -11,6 +11,7 @@ import com.fullmvvmsample.baiju.util.MyCoroutines
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
+import java.time.temporal.ChronoUnit
 
 
 private val MINIMUM_INTERVAL = 6
@@ -27,11 +28,12 @@ class QuotesRepository(
 
     init {
         quotes.observeForever {
+            // This fun will be called, only if there is a change in the LiveData
             saveQuotes(it)
         }
     }
 
-    private fun saveQuotes(quotes: List<Quote>?) {
+    private fun saveQuotes(quotes: List<Quote>  ?) {
         MyCoroutines.io {
           //  prefs.saveLastSavedAt(LocalDateTime.now().toString())
             db.getQuoteDao().saveAllQuotes(quotes!!) // Save Quotes In local DB
@@ -55,7 +57,7 @@ class QuotesRepository(
     }
 
     private fun isFetchNeeded(savedAt: LocalDateTime): Boolean {
-       // return ChronoUnit.HOURS.between(savedAt, LocalDateTime.now()) > MINIMUM_INTERVAL
-        return true
+        return ChronoUnit.HOURS.between(savedAt, LocalDateTime.now()) > MINIMUM_INTERVAL
+        //return true
     }
 }

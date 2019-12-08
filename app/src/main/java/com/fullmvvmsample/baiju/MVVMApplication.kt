@@ -30,6 +30,7 @@ class MVVMApplication : Application(), KodeinAware {
         bind() from singleton { PrefrenceProvider(instance()) }
         bind() from singleton { UserRepository(instance(), instance()) }
         bind() from singleton { QuotesRepository(instance(), instance(),instance()) }
+        // provider is used for ViewModelFactory
         bind() from provider { AuthViewModelFactory(instance()) }
         bind() from provider { ProfileViewModelFactory(instance()) }
         bind() from provider { QuotesViewModelFactory(instance()) }

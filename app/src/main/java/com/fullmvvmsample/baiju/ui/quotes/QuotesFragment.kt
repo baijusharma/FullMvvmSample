@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.fullmvvmsample.baiju.R
 import com.fullmvvmsample.baiju.util.MyCoroutines
 import com.fullmvvmsample.baiju.util.toast
@@ -30,10 +30,11 @@ class QuotesFragment : Fragment(), KodeinAware {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, factory).get(QuotesViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(QuotesViewModel::class.java)
 
         MyCoroutines.main {
-            val quotes = viewModel.quotes.await()
+            val quotes = viewModel.vmQuotes.await()
+            // We always have to observe the changes done to the Objects of the LiveData only
             quotes.observe(this, Observer {
                 context?.toast(it.size.toString())
             })

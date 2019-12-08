@@ -11,6 +11,7 @@ class PrefrenceProvider(context: Context) {
     private val appContext = context.applicationContext
 
     private val preference: SharedPreferences
+        //get() is the backing property of kotlin
         get() = PreferenceManager.getDefaultSharedPreferences(appContext)
 
     fun saveLastSavedAt(savedAt: String) {

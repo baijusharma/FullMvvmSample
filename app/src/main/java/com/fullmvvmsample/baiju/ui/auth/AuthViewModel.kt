@@ -29,7 +29,7 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
 
             try {
                 val loginResponse = userRepository.userLogin(email!!, password!!)
-
+                // sending a response to the main thread due to this MyCoroutines.main
                 loginResponse.user?.let {
                     authListener?.onSuccess(it)
                     userRepository.saveUser(it)
@@ -81,7 +81,7 @@ class AuthViewModel(private val userRepository: UserRepository) : ViewModel() {
             return
         }
 
-        MyCoroutines.main {
+        MyCoroutines.main{
 
             try {
                 val loginResponse = userRepository.userSignUp(name!!, email!!, password!!)
